@@ -25,17 +25,17 @@ a_group = ["Ahmed Al-Bahar", "Alexander Glassman", "Brendan Brown", "Caleb Rugg"
 
  
 def new_groups(group_array)
-	
+
+3.times do	
   new_groups = group_array.shuffle.each_slice(4).to_a
   new_groups[0] << new_groups.pop
   new_groups[0].flatten!
   new_groups.each {|i| puts "This accountability group is #{i.join(", ")}."}
-
+  puts "*****"
+ end
 end
 
 new_groups(a_group)
-# new_groups(a_group)
-# new_groups(a_group)
 # 4. Refactored Solution
 
 
