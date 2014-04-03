@@ -1,28 +1,24 @@
-# U2.W4: Title here
+# U2.W4: Nums Commas Challenge
 
 
-# I worked on this challenge [by myself, with: ].
+# I worked on this challenge by myself.
 
 # 2. Pseudocode
 
-# Input:
-# Output:
+# Input: any number
+# Output: that same number with commas separating every 3 digits from the right to the left
 # Steps:
 
 
 # 3. Initial Solution
 
-def seperate_comma(num)
-  num.to_s.split
-  if num.length < 3
-  	return num.join
-  else
-  	num.insert()
-  end
+
+def separate_comma(num)
+  num_array = num.to_s.chars.reverse
+  final_num = num_array.each_slice(3).map {|x| x.join }
+  final_num.join(",").reverse
 end
 
- p seperate_comma(45)
-x.to_s.scan(/.../).map {|e| e.to_i }
 
 
 # 4. Refactored Solution
