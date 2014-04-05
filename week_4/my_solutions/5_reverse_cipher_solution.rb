@@ -42,7 +42,7 @@ end
 # It takes a random sample from an array (you can specify the number of samples you'd like).
 # 5. Are there any other methods you want to understand better?
 # The .zip method is still confusing to me. I understand what it does with equal sized arrays, 
-#but I'm confused about the behavior with unequal sized arrays. 
+# but I'm confused about the behavior with unequal sized arrays. 
 # 6. Does this code look better or worse than your refactored solution
 #    of the original cipher code? What's better? What's worse?
 # This code actually looks very very similar to our refactored solution 
