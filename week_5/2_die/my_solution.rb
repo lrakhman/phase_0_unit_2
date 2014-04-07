@@ -14,12 +14,18 @@
 
 class Die
   def initialize(labels)
+   @labels = labels
+   if @labels.empty?
+     raise ArgumentError.new("Empty array")
+   end
   end
 
   def sides
+    @labels.length
   end
 
   def roll
+    @labels.sample
   end
 end
 
