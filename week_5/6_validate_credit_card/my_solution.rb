@@ -79,6 +79,7 @@ cc = CreditCard.new(4408041234567893)
 cc2 = CreditCard.new(4408041234567892)
 
 p cc.add_nums == 70
+p cc2.add_nums != 70
 p cc.double_digits == [8, 4, 0, 8, 0, 4, 2, 2, 6, 4, 1, 0, 6, 1, 4, 8, 1, 8, 3]
 p cc.check_card == true
 p cc2.check_card == false
