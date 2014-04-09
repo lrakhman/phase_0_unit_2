@@ -13,8 +13,8 @@
 # 3. in initialize, set @card_number = card_number.to_s, then raise ArgumentError if card_number != 16
 # 4. in check_card, make num = an array of numbers that are strings that have been created from the cc num, 
 # then turn them into integers
-# 5. make a new variable, array1 that equals num.reverse and grab all the even indices
-# 6. make another variable, array2 that equal num.rever and grab all the odd indices
+# 5. make a new variable, array1 that grabs all the even indices
+# 6. make another variable, array2 that grabs all the odd indices
 # 7. double each number in the odd array by using .map, then joining them all together, then
 # dividing them out again by using .scan(/./)
 # 8. turn all the strings of the doubled array into integers with .to_i
@@ -59,15 +59,17 @@ class CreditCard
     raise ArgumentError.new("Number must be 16 digits") if @card_number.length != 16
   end
 
+  def double_digits
+    cc = @card_number.scan(/./).map(&:to_i)
+    doubled_nums = cc.each_index { |i| cc[i] *= 2 if i.even? }.join.scan(/./).map(&:to_i)
+  end
+
+  def add_nums
+    double_digits.reduce(:+)
+  end
 
   def check_card
-    num = @card_number.scan(/./).map(&:to_i)
-    odd_array = num.reverse.select.each_with_index { |enum, i| i.odd? }
-    even_array = num.reverse.select.each_with_index { |enum, i| i.even? }
-    doubled_array = even_array.map {|x| x * 2 }.join.scan(/./)
-    new_array = doubled_array.map(&:to_i) + odd_array
-    validate = new_array.reduce(:+)
-    validate % 10 == 0 ? true : false
+    add_nums % 10 == 0 ? true : false
   end
 end
 
@@ -76,11 +78,10 @@ end
 cc = CreditCard.new(4408041234567893)
 cc2 = CreditCard.new(4408041234567892)
 
+p cc.add_nums == 70
+p cc.double_digits == [8, 4, 0, 8, 0, 4, 2, 2, 6, 4, 1, 0, 6, 1, 4, 8, 1, 8, 3]
 p cc.check_card == true
 p cc2.check_card == false
-
-
-
 
 
 # 5. Reflection 
