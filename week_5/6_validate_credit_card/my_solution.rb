@@ -85,3 +85,15 @@ p cc2.check_card == false
 
 
 # 5. Reflection 
+
+# This was a great excercise. I finished it a long time ago, back when we first had access to 
+# Socrates. My original solution sucked huge balls! I'm kind of happy about how much I've 
+# learned over the past few weeks (I know, I know... there's still a LONG road ahead). I used
+# new methods that I've discovered, I made the code more concise, and I split up the methods
+# to each have one responsibility. Overall, I think the new code is a huge improvement. I'm 
+# sure there are even better ways to write this, but I don't see them at the moment. Lastly,
+# I know I can add a private keyword for the .double_digits and .add_num methods, but then I
+# can't test the code in the driver tests section, which is why I didn't do that. 
+
+
+
