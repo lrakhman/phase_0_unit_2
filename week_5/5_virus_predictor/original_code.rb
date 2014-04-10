@@ -22,6 +22,8 @@ class VirusPredictor
     @next_region = regional_spread
   end
 
+  attr_reader :population
+
   def virus_effects  #HINT: What is the SCOPE of instance variables? The scope of instance variables in anywhere inside the class. This method is calling the private method.
     predicted_effects(@population_density, @population, @state)
   end
@@ -76,3 +78,15 @@ alaska.virus_effects
 #Report for all 50 states:
 
 STATE_DATA.map { |k,v| VirusPredictor.new(k,v[:population_density], v[:population], v[:region], v[:regional_spread]).virus_effects  }
+
+
+#BONUS: Access the population by calling it on the instance.
+# I added attr_reader :population to make this possible.
+
+p alabama.population
+p jersey.population
+p california.population
+p alaska.population
+
+
+
