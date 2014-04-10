@@ -1,15 +1,20 @@
 # U2.W5: Virus Predictor
 
-# I worked on this challenge [by myself, with: ].
+# I worked on this challenge by myself.
+
+# This program is taking the STATE_DATA hash, which is made of keys and values (that are actually
+# another hash), and using the info to calculate the effects that a virus has in each state.
 
 # EXPLANATION OF require_relative
-#
+# When you use require to load a file, you are usually accessing functionality that has been properly installed, and made accessible, in your system. 
+# require does not offer a good solution for loading files within the project’s code. This may be useful during a development phase, 
+# for accessing test data, or even for accessing files that are "locked" away inside a project, not intended for outside use.
 #
 require_relative 'state_data'
 
 class VirusPredictor
 
-  def initialize(state_of_origin, population_density, population, region, regional_spread)
+  def initialize(state_of_origin, population_density, population, region, regional_spread) #initialize instance variables
     @state = state_of_origin
     @population = population
     @population_density = population_density
@@ -17,55 +22,43 @@ class VirusPredictor
     @next_region = regional_spread
   end
 
-  def virus_effects  #HINT: What is the SCOPE of instance variables?
-    predicted_deaths(@population_density, @population, @state)
-    speed_of_spread(@population_density, @state)
+  def virus_effects  #HINT: What is the SCOPE of instance variables? The scope of instance variables in anywhere inside the class. This method is calling the private method.
+    predicted_effects(@population_density, @population, @state)
   end
 
-  private  #what is this?  what happens if it were cut and pasted above the virus_effects method
+  private  #what is this?  what happens if it were cut and pasted above the virus_effects method. "Private" makes methods inaccessible from outside the class. 
 
-  def predicted_deaths(population_density, population, state)
-    if @population_density >= 200
-      number_of_deaths = (@population * 0.4).floor
-    elsif @population_density >= 150
-      number_of_deaths = (@population * 0.3).floor
-    elsif @population_density >= 100
-      number_of_deaths = (@population * 0.2).floor
-    elsif @population_density >= 50
-      number_of_deaths = (@population * 0.1).floor
-    else 
-      number_of_deaths = (@population * 0.05).floor
-    end
-
-    print "#{@state} will lose #{number_of_deaths} people in this outbreak"
-
-  end
-
-  def speed_of_spread(population_density, state) #in months
-    speed = 0.0
+  def predicted_effects(population_density, population, state) #This method is calculating the speed and number of deaths per state.
 
     if @population_density >= 200
-      speed += 0.5
+      speed = 0.5
+      percentage = 0.4
     elsif @population_density >= 150
-      speed += 1
+      speed = 1
+      percentage = 0.3
     elsif @population_density >= 100
-      speed += 1.5
+      speed = 1.5
+      percentage = 0.2
     elsif @population_density >= 50
-      speed += 2
+      speed = 2
+      percentage = 0.1
     else 
-      speed += 2.5
-    end
+      speed = 2.5
+      percentage = 0.05
+    end 
 
-    puts " and will spread across the state in #{speed} months.\n\n"
+    number_of_deaths = (@population * percentage).floor
+
+    print "#{@state} will lose #{number_of_deaths} people in this outbreak and will spread across the state in #{speed} months.\n\n"
 
   end
 
 end
 
-#=======================================================================
+# #=======================================================================
 
 # DRIVER CODE
- # initialize VirusPredictor for each state
+# initialize VirusPredictor for each state
 
 
 alabama = VirusPredictor.new("Alabama", STATE_DATA["Alabama"][:population_density], STATE_DATA["Alabama"][:population], STATE_DATA["Alabama"][:region], STATE_DATA["Alabama"][:regional_spread]) 
@@ -79,3 +72,7 @@ california.virus_effects
 
 alaska = VirusPredictor.new("Alaska", STATE_DATA["Alaska"][:population_density], STATE_DATA["Alaska"][:population], STATE_DATA["Alaska"][:region], STATE_DATA["Alaska"][:regional_spread]) 
 alaska.virus_effects
+
+#Report for all 50 states:
+
+STATE_DATA.map { |k,v| VirusPredictor.new(k,v[:population_density], v[:population], v[:region], v[:regional_spread]).virus_effects  }
