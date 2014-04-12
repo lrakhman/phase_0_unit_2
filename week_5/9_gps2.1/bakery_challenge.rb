@@ -5,45 +5,44 @@
 # 2)
 
  # This is the file you should end up editing. 
- 
 def bakery_num(num_of_people, fav_food)
   my_list = {"pie" => 8, "cake" => 6, "cookie" => 1}
-  pie_qty = 0
-  cake_qty = 0
-  cookie_qty = 0
-  
-  has_fave = false
+  food_qty = my_list[fav_food]
+  fav_qty = 0
+  second_fav_qty = 0
+  third_fav_qty = 0
 
-  my_list.each_key do |k|
-  if k == fav_food
-  has_fave = true
-  fav_food = k
-  end
-  end
-  if has_fave == false
-  raise ArgumentError.new("You can't make that food")
-  else
-  fav_food_qty = my_list.values_at(fav_food)[0]
-  if num_of_people % fav_food_qty == 0
-    num_of_food = num_of_people / fav_food_qty
-    return "You need to make #{num_of_food} #{fav_food}(s)."
-  else num_of_people % fav_food_qty != 0
-    while num_of_people > 0
-    if num_of_people / my_list["pie"] > 0
-    pie_qty = num_of_people / my_list["pie"]
-    num_of_people = num_of_people % my_list["pie"]
-    elsif num_of_people / my_list["cake"] > 0
-    cake_qty = num_of_people / my_list["cake"]
-    num_of_people = num_of_people % my_list["cake"]
+  
+  raise ArgumentError.new("You can't make that food") unless my_list.include?(fav_food)
+    
+    if num_of_people % food_qty  == 0 
+       num_of_food = num_of_people / food_qty 
+       return "You need to make #{num_of_food} #{fav_food}(s)."
+    
     else
-    cookie_qty = num_of_people
-    num_of_people = 0
-    end
-    end
-    return "You need to make #{pie_qty} pie(s), #{cake_qty} cake(s), and #{cookie_qty} cookie(s)."
-    end
-  end
+       while num_of_people > 0
+        
+        max_value = my_list.keep_if {|k, v| k != fav_food}.values.max
+        min_value = my_list.keep_if {|k, v| k != fav_food}.values.min
+         
+         if num_of_people / food_qty > 0 
+          fav_qty = num_of_people / food_qty
+          num_of_people = num_of_people % food_qty
+          
+          elsif num_of_people / max_value > 0 
+          second_fav_qty = num_of_people / max_value
+          num_of_people = num_of_people % max_value
+        
+          else 
+            third_fav_qty = num_of_people
+            num_of_people = 0
+          end
+        end
+      return "You need to make #{fav_qty} #{fav_food}(s), #{second_fav_qty} #{my_list.key(max_value)}(s), and #{third_fav_qty} #{my_list.key(min_value)}(s)."
+   end
+
 end
+
  
 
 #-----------------------------------------------------------------------------------------------------
@@ -57,7 +56,7 @@ p bakery_num(4, "pie") == "You need to make 0 pie(s), 0 cake(s), and 4 cookie(s)
 p bakery_num(130, "pie") == "You need to make 16 pie(s), 0 cake(s), and 2 cookie(s)."
 # p bakery_num(3, "apples") # this will raise an ArgumentError
 
-# You SHOULD change this driver code. Why? Because it doesn't make sense.
-p bakery_num(41, "cake") == "You need to make 5 pie(s), 0 cake(s), and 1 cookie(s)." # WHAAAAAT? I thought I said I wanted cake!
- 
+# # # You SHOULD change this driver code. Why? Because it doesn't make sense.
+# p bakery_num(41, "cake") == "You need to make 5 pie(s), 0 cake(s), and 1 cookie(s)." # WHAAAAAT? I thought I said I wanted cake!
+p bakery_num(41, "cake") == "You need to make 6 cake(s), 0 pie(s), and 5 cookie(s)."
  

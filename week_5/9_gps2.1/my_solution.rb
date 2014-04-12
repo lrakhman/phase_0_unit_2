@@ -1,8 +1,46 @@
 # U2.W5: Bakery Challenge GPS
 
-# I worked on this challenge with: 
+# I worked on this challenge with: D. Kevin Kang
 
+def bakery_num(num_of_people, fav_food)
+  my_list = {"pie" => 8, "cake" => 6, "cookie" => 1}
+  food_qty = my_list[fav_food]
+  fav_qty = 0
+  second_fav_qty = 0
+  third_fav_qty = 0
 
+  
+  raise ArgumentError.new("You can't make that food") unless my_list.include?(fav_food)
+    
+    if num_of_people % food_qty  == 0 
+       num_of_food = num_of_people / food_qty 
+       return "You need to make #{num_of_food} #{fav_food}(s)."
+    
+    else
+       while num_of_people > 0
+        
+        max_value = my_list.keep_if {|k, v| k != fav_food}.values.max
+        min_value = my_list.keep_if {|k, v| k != fav_food}.values.min
+         
+         if num_of_people / food_qty > 0 
+          fav_qty = num_of_people / food_qty
+          num_of_people = num_of_people % food_qty
+          
+          elsif num_of_people / max_value > 0 
+          second_fav_qty = num_of_people / max_value
+          num_of_people = num_of_people % max_value
+        
+          else 
+            third_fav_qty = num_of_people
+            num_of_people = 0
+          end
+        end
+      return "You need to make #{fav_qty} #{fav_food}(s), #{second_fav_qty} #{my_list.key(max_value)}(s), and #{third_fav_qty} #{my_list.key(min_value)}(s)."
+   end
+
+end
+
+ 
 
 
 
@@ -10,7 +48,14 @@
 # Our Refactored Solution
 
 
-
+case fav_food
+when "pie"
+...
+when "cake"
+...
+else
+"cookie"
+end
 
 
 
