@@ -1,7 +1,7 @@
 # U2.W5: Implement a Reverse Polish Notation Calculator
 
 
-# I worked on this challenge [by myself, with: ].
+# I worked on this challenge by myself.
 
 # 2. Pseudocode
 
@@ -13,7 +13,8 @@
 # 3. Initial Solution
 
 class RPNCalculator
-  # Define your methods, here!
+  def evaluate
+  end# Define your methods, here!
 end
 
 

@@ -47,17 +47,33 @@ end
 
 # Our Refactored Solution
 
+def bakery_num(num_of_people, fav_food)
 
-case fav_food
-when "pie"
-...
-when "cake"
-...
-else
-"cookie"
+  my_list = {"pie" => 8, "cake" => 6, "cookie" => 1}
+  
+  raise ArgumentError.new("You can't make that food") unless my_list.include?(fav_food)
+  #when its even
+  if num_of_people % my_list[fav_food] == 0
+    num_of_even_food = num_of_people / my_list[fav_food]
+    return "You need to make #{num_of_even_food} #{fav_food}(s)."
+  end
+ 
+  #when its not even and nasty 
+  second_fav_food = my_list.key(my_list.select{|k,v| k != fav_food}.values.max)
+  third_fav_food  = my_list.key(my_list.select{|k,v| k != fav_food}.values.min)
+  
+  fav_foods = [fav_food,second_fav_food,third_fav_food]
+  
+  hashy = fav_foods.inject({}) do |hashy,food|
+    hashy[food] = num_of_people / my_list[food]
+    num_of_people = num_of_people % my_list[food]
+    hashy
+  end
+  
+  #display
+  return "You need to make #{hashy["pie"]} pie(s), #{hashy["cake"]} cake(s), and #{hashy["cookie"]} cookie(s)." 
+    
 end
-
-
 
 
 
