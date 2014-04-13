@@ -1,8 +1,8 @@
 # U2.W5: The Bakery Challenge (GPS 2.1)
 
 # Your Names
-# 1)
-# 2)
+# 1) Lana Rakhman
+# 2) D. Kevin Kang
 
  # This is the file you should end up editing. 
 def bakery_num(num_of_people, fav_food)

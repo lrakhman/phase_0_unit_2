@@ -2,49 +2,45 @@
 
 # I worked on this challenge with: D. Kevin Kang
 
-def bakery_num(num_of_people, fav_food)
-  my_list = {"pie" => 8, "cake" => 6, "cookie" => 1}
-  food_qty = my_list[fav_food]
-  fav_qty = 0
-  second_fav_qty = 0
-  third_fav_qty = 0
+# def bakery_num(num_of_people, fav_food)
+#   my_list = {"pie" => 8, "cake" => 6, "cookie" => 1}
+#   food_qty = my_list[fav_food]
+#   fav_qty = 0
+#   second_fav_qty = 0
+#   third_fav_qty = 0
 
   
-  raise ArgumentError.new("You can't make that food") unless my_list.include?(fav_food)
+#   raise ArgumentError.new("You can't make that food") unless my_list.include?(fav_food)
     
-    if num_of_people % food_qty  == 0 
-       num_of_food = num_of_people / food_qty 
-       return "You need to make #{num_of_food} #{fav_food}(s)."
+#     if num_of_people % food_qty  == 0 
+#        num_of_food = num_of_people / food_qty 
+#        return "You need to make #{num_of_food} #{fav_food}(s)."
     
-    else
-       while num_of_people > 0
+#     else
+#        while num_of_people > 0
         
-        max_value = my_list.keep_if {|k, v| k != fav_food}.values.max
-        min_value = my_list.keep_if {|k, v| k != fav_food}.values.min
+#         max_value = my_list.keep_if {|k, v| k != fav_food}.values.max
+#         min_value = my_list.keep_if {|k, v| k != fav_food}.values.min
          
-         if num_of_people / food_qty > 0 
-          fav_qty = num_of_people / food_qty
-          num_of_people = num_of_people % food_qty
+#          if num_of_people / food_qty > 0 
+#           fav_qty = num_of_people / food_qty
+#           num_of_people = num_of_people % food_qty
           
-          elsif num_of_people / max_value > 0 
-          second_fav_qty = num_of_people / max_value
-          num_of_people = num_of_people % max_value
+#           elsif num_of_people / max_value > 0 
+#           second_fav_qty = num_of_people / max_value
+#           num_of_people = num_of_people % max_value
         
-          else 
-            third_fav_qty = num_of_people
-            num_of_people = 0
-          end
-        end
-      return "You need to make #{fav_qty} #{fav_food}(s), #{second_fav_qty} #{my_list.key(max_value)}(s), and #{third_fav_qty} #{my_list.key(min_value)}(s)."
-   end
+#           else 
+#             third_fav_qty = num_of_people
+#             num_of_people = 0
+#           end
+#         end
+#       return "You need to make #{fav_qty} #{fav_food}(s), #{second_fav_qty} #{my_list.key(max_value)}(s), and #{third_fav_qty} #{my_list.key(min_value)}(s)."
+#    end
 
-end
+# end
 
  
-
-
-
-
 # Our Refactored Solution
 
 def bakery_num(num_of_people, fav_food)
@@ -89,12 +85,20 @@ p bakery_num(130, "pie") == "You need to make 16 pie(s), 0 cake(s), and 2 cookie
 # p bakery_num(3, "apples") # this will raise an ArgumentError
 
 # You SHOULD change this driver code. Why? Because it doesn't make sense.
-p bakery_num(41, "cake") == "You need to make 5 pie(s), 0 cake(s), and 1 cookie(s)." # WHAAAAAT? I thought I said I wanted cake!
+p bakery_num(41, "cake") == "You need to make 0 pie(s), 6 cake(s), and 5 cookie(s)." # WHAAAAAT? I thought I said I wanted cake!
 
 
 
 
 #  Reflection 
 
-
+# This was harder than I origninally thought it would be! I now see why people 
+# get so frustrated with legacy code. I had a difficult time even wrapping my brain
+# around what was going on because I didn't understand the logic at first. My parter
+# was great though, and explained some things to me that I was confused about (and 
+# our instructor was good as well at doing that). We worked on this for about 3 hours
+# before calling it a day, and then we refactored individually and via email. This
+# was a great experience in not being able to get a piece of code to run for a long
+# time, then taking a break, then coming back to it and having an "aha!" moment. 
+# Thank god for those :). 
 
