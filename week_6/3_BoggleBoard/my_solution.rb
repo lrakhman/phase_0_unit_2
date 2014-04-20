@@ -38,8 +38,7 @@ class BoggleBoard
   end
 
   def get_diagonal(coord)
-   
-   
+   #code here
   end
 
 
@@ -79,8 +78,15 @@ p boggle_board.get_col(0) == "biet"
 p boggle_board.get_col(1) == "roca"
 p boggle_board.get_col(2) == "adlk"
 p boggle_board.get_col(3) == "etre"
-p boggle_board.get_diagonal([0,0])
-p boggle_board.get_diagonal([0,1])
-p boggle_board.get_diagonal([1,0])
+# p boggle_board.get_diagonal([0,0])
+# p boggle_board.get_diagonal([0,1])
+# p boggle_board.get_diagonal([1,0])
 
 # 5. Reflection 
+
+# This code was not difficult to change from last week. 
+# The only challenge on this one was the get_diagonal method. 
+# That took me forever, because I couldn't decide how to approach it. 
+# I'm still working on it though, even though I didn't
+# quite have enough time this week to come back to it. 
+# I will solve you, dammnit :).

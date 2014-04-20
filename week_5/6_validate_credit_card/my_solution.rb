@@ -61,7 +61,7 @@ class CreditCard
 
   def double_digits
     cc = @card_number.scan(/./).map(&:to_i)
-    doubled_nums = cc.each_index { |i| cc[i] *= 2 if i.even? }.join.scan(/./).map(&:to_i)
+    cc.each_index { |i| cc[i] *= 2 if i.even? }.join.scan(/./).map(&:to_i)
   end
 
   def add_nums

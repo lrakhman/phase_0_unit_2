@@ -5,7 +5,10 @@
 
 
 # Pseudocode
-
+# 1. create a song class and a playlist class
+# 2. initialize tite, artist, songs, and list
+# 3. define methods play, add, num_of_tracks, remove, includes, play_all, and display
+# 4. for play_all and display, loop through list to access object attributes title and artist
 
 
 # Initial Solution
@@ -30,15 +33,15 @@ class Playlist
 
   def initialize(*songs)
   	@songs = songs
-  	@list = {}
+  	@list = []
   end
 
-  def add(song)
-  	@list.store(songs.title, songs.artist)
+  def add(*song)
+  	@list << song
   end
 
   def num_of_tracks
-  	@list.length
+  	@list.map.length
   end
 
   def remove(song)
@@ -50,14 +53,19 @@ class Playlist
   end
 
   def play_all
-  	puts "You are going to listen to the following songs: #{list}"
+  	puts "You are going to listen to the following songs:"
+    @list.each {|s| puts s.title + ","}
   end
 
   def display
-  	puts "Here are all the songs in your playlist: #{@list}"
+  	puts "Here are all the songs in your playlist:"
+    @list.each {|s| puts "*" + s.artist } #songs.title}
   end
 
-
+  # def play
+  #   song = @list.shuffle.pop
+  #   puts "You are now listening to: #{song.title} by #{song.artist}"
+  # end
 end
 
 
@@ -69,45 +77,27 @@ end
 
 
 # DRIVER TESTS GO BELOW THIS LINE
-# one_by_one = Song.new("One by One", "Sirenia")
-# world_so_cold = Song.new("World So Cold", "Three Days Grace") 
-# going_under = Song.new("Going Under", "Evanescence")
-
-
-
-# my_playlist = Playlist.new(one_by_one, world_so_cold, going_under)
- 
-# lying_from_you = Song.new("Lying From You", "Linkin Park")
-# angels = Song.new("Angels", "Within Temptation")
-
-# p my_playlist.list
-# p my_playlist.add(lying_from_you, angels)
-# p my_playlist.num_of_tracks #== 5
-# p going_under.play
-# p my_playlist.remove(angels)
-# p my_playlist.includes?(lying_from_you) #== true
-# my_playlist.play_all
-# my_playlist.display
-
-# DRIVER TESTS GO BELOW THIS LINE
 one_by_one = Song.new("One by One", "Sirenia")
 world_so_cold = Song.new("World So Cold", "Three Days Grace") 
 going_under = Song.new("Going Under", "Evanescence")
 
  
 my_playlist = Playlist.new(one_by_one, world_so_cold, going_under)
-# p my_playlist 
+p my_playlist 
 lying_from_you = Song.new("Lying From You", "Linkin Park")
 angels = Song.new("Angels", "Within Temptation")
  
-my_playlist.add(lying_from_you)
+my_playlist.add(lying_from_you, angels)
 p my_playlist.list
-# p my_playlist.num_of_tracks == 5
-# going_under.play
-# my_playlist.remove(angels)
-# p my_playlist.includes?(lying_from_you) == true
+p my_playlist.num_of_tracks == 5
+going_under.play
+my_playlist.remove(angels)
+p my_playlist == 4
+p my_playlist.includes?(lying_from_you) == true
+p my_playlist.num_of_tracks
 # my_playlist.play_all
 # my_playlist.display
+
 
 
 
